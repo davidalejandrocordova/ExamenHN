@@ -16,7 +16,8 @@
 </div>
 <div class="container">
   <!--<button id="btn_informe" type="button" class="btn btn-primary btn-lg btn-rounded">Nuevo Informe</button>-->
-  <a href="{{ route('formulario.index') }}" class="btn btn-success rounded">
+  <a href="{{ route('examen_biopsia.nuevo') }}" class="btn btn-success rounded"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;Nuevo Informe Biopsia</a>
+  <a href="{{ route('examen_cervical.nuevo') }}" class="btn btn-success rounded"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;Nuevo Informe Citologia</a>
 </div>
 <div class="container">
 <h2>Tabla de datos </h2>

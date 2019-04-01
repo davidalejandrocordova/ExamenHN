@@ -17,10 +17,7 @@
 
       </div>
 
-      <div  class="col">
-        <label for="formGroupExampleInput">Rut:</label>
-        
-      </div>
+      
    </div>
 <br>
 

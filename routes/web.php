@@ -11,13 +11,9 @@
 |
 */
 
-Route::get('Formulario', function () {
-    return view('Formulario');
-});
+Route::get('examen_biopsia', 'PacientesController@Patologica')->name('examen_biopsia.nuevo');
 
-Route::get('Examen_cervical', function(){
-    return view('Examen_cervical');
-});
+Route::get('examen_cervical', 'PacientesController@Cervical')->name('examen_cervical.nuevo');
 
 Route::get('/', function(){
     return view('Paciente');
