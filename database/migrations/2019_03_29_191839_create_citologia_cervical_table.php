@@ -16,6 +16,10 @@ class CreateCitologiaCervicalTable extends Migration
         Schema::create('citologia_cervical', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->string('n_pap')->index()->unique();
+            $table->integer('rut_paciente')->nullable();
+            $table->string('diagnostico',1000);
+            $table->string('indicacion',1000);
         });
     }
 

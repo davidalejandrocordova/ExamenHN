@@ -16,11 +16,6 @@
           <label for="formGroupExampleInput">historia clinica:</label>
           
         </div>
-
-        <div  class="col">
-          <label for="formGroupExampleInput">Rut:</label>
-          
-        </div>
     </div>
   <br>
 
@@ -28,9 +23,14 @@
   <div class="jumbotron text-center">
       <h4> SERVICIO DE ANATOMÍA PATOLÓGICA INFORME DE BIOPSIA</h4><br>
   </div>
-    
   <form>
     <div class="row">
+      <div class="container">
+          <label for="formGroupExampleInput">Ingrese Rut</label>
+          <input type="text" maxlength="10" id="rut" name="rut" required oninput="checkRut(this)" placeholder="Ingrese RUT">
+        <button type="submit">Consultar Rut</button>
+        <script src="validarRUT.js"></script>
+      </div>
       <div class="col">
         <label for="formGroupExampleInput">Ingrese nombre</label>
         <input type="text" class="form-control" placeholder="Nombre">
@@ -64,7 +64,7 @@
   <form>
   <div class="form-group">
       <label for="formGroupExampleInput">Ingrese Antecedentes clinicos</label>
-      <textarea class="form-control" id="formGroupExampleInput" rows="2" placeholder="Antecedentes clinicos"></textarea>
+      <textarea class="form-control" id="formGroupExampleInput" rows="3" placeholder="Antecedentes clinicos"></textarea>
     </div>
 
 
@@ -80,12 +80,12 @@
     <div class="row"> 
       <div class="col">
         <label for="formGroupExampleInput">Examen Macroscopico</label>
-        <textarea class="form-control" id="formGroupExampleInput" rows="3" placeholder="Ingrese examen"></textarea>
+        <textarea class="form-control" id="formGroupExampleInput" rows="5" placeholder="Ingrese examen"></textarea>
       </div>
     </div>
 
     <br>
-      <div class = "rows col-md-6">
+      <div class ="rows col-md-6">
         <label for="formGroupExampleInput">Fecha toma muestra </label>
         <input type="date" class="form-control" placeholder="Fecha de muestra">
         <label for="formGroupExampleInput">Fecha de ingreso</label>
@@ -100,7 +100,7 @@
     <div class="row">
       <div class="col">
         <label for="formGroupExampleInput">Examen Microscopico</label>
-        <textarea class="form-control" id="formGroupExampleInput" rows="3" placeholder="Ingrese examen"></textarea>
+        <textarea class="form-control" id="formGroupExampleInput" rows="5" placeholder="Ingrese examen"></textarea>
       </div>
 
   </div>
@@ -109,7 +109,7 @@
   <br>
   <div class="form-group">
       <label for="formGroupExampleInput">Ingrese diagnostico</label>
-      <textarea class="form-control" id="formGroupExampleInput" rows="2" placeholder="Diagnostico"></textarea>
+      <textarea class="form-control" id="formGroupExampleInput" rows="3" placeholder="Diagnostico"></textarea>
     </div>
     
   <div class="form-group">
@@ -132,7 +132,7 @@
   <br>
   <div class="form-group">
       <label for="formGroupExampleInput"></label>Mensaje Interno
-      <textarea class="form-control" id="formGroupExampleInput" rows="2" placeholder="Mensaje"></textarea>
+      <textarea class="form-control" id="formGroupExampleInput" rows="3" placeholder="Mensaje"></textarea>
     </div> 
 
 
@@ -142,7 +142,55 @@
 <br>
 
  
-
+<script>
+      function checkRut(rut) {
+        // Despejar Puntos
+        var valor = rut.value.replace('.','');
+        // Despejar Guión
+        valor = valor.replace('-','');
+        
+        // Aislar Cuerpo y Dígito Verificador
+        cuerpo = valor.slice(0,-1);
+        dv = valor.slice(-1).toUpperCase();
+        
+        // Formatear RUN
+        rut.value = cuerpo + '-'+ dv
+        
+        // Si no cumple con el mínimo ej. (n.nnn.nnn)
+        if(cuerpo.length < 7) { rut.setCustomValidity("RUT Incompleto"); return false;}
+        
+        // Calcular Dígito Verificador
+        suma = 0;
+        multiplo = 2;
+        
+        // Para cada dígito del Cuerpo
+        for(i=1;i<=cuerpo.length;i++) {
+        
+            // Obtener su Producto con el Múltiplo Correspondiente
+            index = multiplo * valor.charAt(cuerpo.length - i);
+            
+            // Sumar al Contador General
+            suma = suma + index;
+            
+            // Consolidar Múltiplo dentro del rango [2,7]
+            if(multiplo < 7) { multiplo = multiplo + 1; } else { multiplo = 2; }
+      
+        }
+        
+        // Calcular Dígito Verificador en base al Módulo 11
+        dvEsperado = 11 - (suma % 11);
+        
+        // Casos Especiales (0 y K)
+        dv = (dv == 'K')?10:dv;
+        dv = (dv == 0)?11:dv;
+        
+        // Validar que el Cuerpo coincide con su Dígito Verificador
+        if(dvEsperado != dv) { rut.setCustomValidity("RUT Inválido"); return false; }
+        
+        // Si todo sale bien, eliminar errores (decretar que es válido)
+        rut.setCustomValidity('');
+    }
+</script>
 
 
     

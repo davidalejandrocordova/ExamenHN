@@ -14,23 +14,24 @@
 <div class="jumbotron text-center">
     <h3> Inicio Servicio</h3><br>
 </div>
-
+<div class="container">
+  <!--<button id="btn_informe" type="button" class="btn btn-primary btn-lg btn-rounded">Nuevo Informe</button>-->
+  <a href="{{ route('formulario.index') }}" class="btn btn-success rounded">
+</div>
 <div class="container">
 <h2>Tabla de datos </h2>
-  <p>Realizar busqueda digitando rut o nombre completo de la persona</p>  
-  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <p>Realizar busqueda digitando rut, nombre de la persona o numero de informe</p>  
+  <input class="form-control" id="myInput" type="text" placeholder="Busqueda..">
   <br>
   <table class="table table-bordered table-striped">
     <thead>
       <tr>
         <th>Numero de biopsia</th>
-        <th>Run</th>
+        <th>Rut</th>
         <th>Nombre</th>
         <th>Servicio</th>
         <th>Fecha</th>
-        <th>Accion</th>
-
-        
+        <th>Accion</th>   
       </tr>
     </thead>
     <tbody id="myTable">

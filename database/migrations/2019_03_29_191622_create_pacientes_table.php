@@ -16,6 +16,10 @@ class CreatePacientesTable extends Migration
         Schema::create('pacientes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->integer('rut')->index()->unique();
+            $table->string('nombre');
+            $table->integer('h_clinica')->unique();
+            $table->date('fecha_nac');
         });
     }
 

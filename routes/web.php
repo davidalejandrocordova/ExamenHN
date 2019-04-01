@@ -19,7 +19,7 @@ Route::get('Examen_cervical', function(){
     return view('Examen_cervical');
 });
 
-Route::get('paciente', function(){
+Route::get('/', function(){
     return view('Paciente');
 });
 
